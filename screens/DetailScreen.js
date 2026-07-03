@@ -1,8 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
 
-export default function DetailScreen({route}){
-     const { item } = route.params;
-      return (
+// Esta pantalla muestra la información completa del elemento seleccionado.
+export default function DetailScreen({ route }) {
+
+  // Aquí recibo los datos enviados desde la pantalla del listado.
+  const { item } = route.params;
+
+  return (
     <View style={styles.container}>
       <Text style={styles.label}>Título</Text>
       <Text style={styles.title}>{item.title}</Text>
@@ -13,9 +17,8 @@ export default function DetailScreen({route}){
   );
 }
 
-
-
 const styles = StyleSheet.create({
+  // Defino el diseño que tendrá la pantalla de detalle.
   container: {
     flex: 1,
     padding: 24,

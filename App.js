@@ -7,10 +7,12 @@ import ItemsScreen from './screens/ItemsScreen';
 import AddItemScreen from './screens/AddItemScreen';
 import DetailScreen from './screens/DetailScreen';
 
+// Creo el Stack para controlar la navegación entre las pantallas.
 const Stack = createNativeStackNavigator();
 
 export default function App() {
 
+  // Aquí guardo los elementos que se mostrarán en el listado.
   const [items, setItems] = useState([
     {
       id: '1',
@@ -24,6 +26,7 @@ export default function App() {
     }
   ]);
 
+  // Esta función agrega un nuevo elemento a la lista.
   function addItem(item) {
     const newItem = {
       id: Date.now().toString(),
@@ -34,20 +37,24 @@ export default function App() {
     setItems([...items, newItem]);
   }
 
+  // Aquí configuro todas las pantallas de la aplicación.
   return (
     <NavigationContainer>
       <Stack.Navigator>
 
+        {/* Pantalla principal */}
         <Stack.Screen
           name="Home"
           component={HomeScreen}
           options={{ title: 'Inicio' }}
         />
 
+        {/* Pantalla donde se muestra el listado */}
         <Stack.Screen name="Items">
           {(props) => <ItemsScreen {...props} items={items} />}
         </Stack.Screen>
 
+        {/* Pantalla para registrar un nuevo elemento */}
         <Stack.Screen name="AddItem">
           {(props) => (
             <AddItemScreen
@@ -57,6 +64,7 @@ export default function App() {
           )}
         </Stack.Screen>
 
+        {/* Pantalla que muestra la información completa del elemento */}
         <Stack.Screen
           name="Detail"
           component={DetailScreen}

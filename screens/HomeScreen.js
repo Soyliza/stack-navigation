@@ -1,12 +1,13 @@
 import { Pressable, StyleSheet, Text, View } from "react-native"
 
-
+// Esta pantalla es la primera que ve el usuario al abrir la aplicación.
 export default function HomeScreen({navigation}){
     return (
          <View style={styles.container}>
         <Text style={styles.title}>App del curso</Text>
         <Text style={styles.subtitle}>Sesión 2: navegación y datos locales</Text>
 
+        {/* Este botón lleva al usuario a la pantalla donde se muestra el listado. */}
         <Pressable
             style={styles.button}
             onPress={() => navigation.navigate('Items')}
@@ -14,6 +15,7 @@ export default function HomeScreen({navigation}){
             <Text style={styles.buttonText}>Ver listado</Text>
         </Pressable>
 
+        {/* Con este botón se abre el formulario para agregar un nuevo elemento. */}
         <Pressable
             style={styles.secondaryButton}
             onPress={() => navigation.navigate('AddItem')}
@@ -25,6 +27,7 @@ export default function HomeScreen({navigation}){
 }
 
 const styles = StyleSheet.create({
+  // Aquí defino el diseño principal de la pantalla.
   container: {
     flex: 1,
     padding: 24,

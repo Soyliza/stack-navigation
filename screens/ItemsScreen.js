@@ -1,41 +1,41 @@
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
+// En esta pantalla muestro todos los elementos registrados en la aplicación.
+export default function ItemScreen({ navigation, items }) {
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <Text style={styles.title}>Listado</Text>
 
+        {/* Este botón abre la pantalla para agregar un nuevo elemento. */}
+        <Pressable
+          style={styles.addButton}
+          onPress={() => navigation.navigate('AddItem')}
+        >
+          <Text style={styles.addButtonText}>Nuevo</Text>
+        </Pressable>
+      </View>
 
-
-
-export default function ItemScreen({ navigation, items }){
-    return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>Listado </Text>
-                <Pressable style={styles.addButton}
-                onPress={()=> navigation.navigate('AddItem')}>
-                    <Text style={styles.addButtonText}>Nuevo</Text>
-                </Pressable>
-            </View>
-
-            <FlatList
-                data={items}
-                keyExtractor={(item)=> item.id}
-                renderItem={ ({item}) =>(
-                    <Pressable
-                        style={styles.card}
-                        onPress={()=> navigation.navigate('Detail',{item:item})}
-                        >
-                        <Text >{item.title}</Text>
-                         <Text >{item.description}</Text>
-                         </Pressable>
-                )}
-            />
-           
-        </View>
-    );
+      {/* FlatList muestra todos los elementos registrados. */}
+      <FlatList
+        data={items}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          <Pressable
+            style={styles.card}
+            onPress={() => navigation.navigate('Detail', { item: item })}
+          >
+            <Text>{item.title}</Text>
+            <Text>{item.description}</Text>
+          </Pressable>
+        )}
+      />
+    </View>
+  );
 }
 
-
-
 const styles = StyleSheet.create({
+  // Aquí defino el diseño de la pantalla del listado.
   container: {
     flex: 1,
     padding: 18,

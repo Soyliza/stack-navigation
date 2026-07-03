@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, TextInput, View } from "react-native";
 
-export default function AddItemScreen({ navigation, onAddItem }){
-    const [title, setTitle] = useState('');
+// Esta pantalla permite capturar un nuevo elemento para agregarlo al listado.
+export default function AddItemScreen({ navigation, onAddItem }) {
+
+  // Aquí guardo el título y la descripción que escribe el usuario.
+  const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
+  // Verifico que los campos no estén vacíos antes de guardar la información.
   function handleSave() {
     if (title.trim() === '' || description.trim() === '') {
       return;
@@ -15,10 +19,11 @@ export default function AddItemScreen({ navigation, onAddItem }){
       description: description,
     });
 
+    // Después de guardar regreso al listado.
     navigation.navigate('Items');
   }
- 
-   return (
+
+  return (
     <View style={styles.container}>
       <Text style={styles.label}>Título</Text>
       <TextInput
@@ -37,6 +42,7 @@ export default function AddItemScreen({ navigation, onAddItem }){
         multiline
       />
 
+      {/* Este botón guarda el nuevo elemento en la lista. */}
       <Pressable style={styles.button} onPress={handleSave}>
         <Text style={styles.buttonText}>Guardar</Text>
       </Pressable>
@@ -44,8 +50,8 @@ export default function AddItemScreen({ navigation, onAddItem }){
   );
 }
 
-
 const styles = StyleSheet.create({
+  // Aquí defino el diseño de la pantalla para agregar elementos.
   container: {
     flex: 1,
     padding: 24,
